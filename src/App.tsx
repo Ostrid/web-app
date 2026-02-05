@@ -1,20 +1,44 @@
-import { ConnectButton } from "@mysten/dapp-kit-react";
-import { WalletStatus } from "./WalletStatus";
+import { ThemeProvider } from "./context/ThemeProvider";
+import { BrowserRouter, Routes, Route } from "react-router";
+import Dashboard from "./components/layout/Dashboard";
+import Main from "./components/layout/Main";
+import { getMainRoutes } from "./utils/routes";
 
 function App() {
   return (
-    <div className="min-h-screen">
-      <header className="sticky top-0 z-50 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-        <div className="container mx-auto flex h-14 items-center justify-between px-4">
-          <h1 className="text-lg font-semibold">Sui dApp Starter</h1>
-          <ConnectButton />
-        </div>
-      </header>
-
-      <main className="container mx-auto px-4 py-8">
-        <WalletStatus />
-      </main>
-    </div>
+    <ThemeProvider>
+      <BrowserRouter>
+        <Routes>
+          {getMainRoutes().map((route) =>
+            route.dashboard ? (
+              <Route
+                key={route.path}
+                path={route.path}
+                element={
+                  <Dashboard>
+                    <route.component />
+                  </Dashboard>
+                }
+              />
+            ) : (
+              <Route
+                key={route.path}
+                path={route.path}
+                element={
+                  route.isLanding ? (
+                    <route.component />
+                  ) : (
+                    <Main>
+                      <route.component />
+                    </Main>
+                  )
+                }
+              />
+            ),
+          )}
+        </Routes>
+      </BrowserRouter>
+    </ThemeProvider>
   );
 }
 
