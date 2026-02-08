@@ -2,6 +2,8 @@ import { TbLayoutDashboardFilled } from "react-icons/tb";
 
 import Home from "../screens/observer/Home.tsx";
 import Landing from "../screens/main/Landing.tsx";
+import { IoSettings } from "react-icons/io5";
+import { RiRobot2Fill } from "react-icons/ri";
 
 export type RouteType = {
   path: string;
@@ -9,7 +11,6 @@ export type RouteType = {
   icon?: Element | any;
   name?: string;
   dashboard?: boolean;
-  p2p?: boolean;
   ignore?: boolean;
   isLanding?: boolean;
 };
@@ -21,6 +22,20 @@ export const getDashboardRoutes = () => {
       component: Home,
       icon: TbLayoutDashboardFilled,
       name: "Observer",
+      dashboard: true,
+    },
+    {
+      path: "/observer/agents",
+      component: ()=>{},
+      icon: RiRobot2Fill,
+      name: "Agents",
+      dashboard: true,
+    },
+    {
+      path: "/observer/settings",
+      component: ()=>{},
+      icon: IoSettings,
+      name: "Settings",
       dashboard: true,
     },
   ];
