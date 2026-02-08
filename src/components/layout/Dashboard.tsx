@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 
-import light from "../../assets/logo/logo_favicon_light.png";
+import light from "../../assets/logo/logo_full_clear_observer_italic.png";
+import dark from "../../assets/logo/logo_full_clear_observer_light.png";
 import { useTheme } from "../../hooks/useTheme";
 import { ThemeToggle } from "../ThemeToggle";
 import ToastContainer from "../ToastContainer";
@@ -19,7 +20,7 @@ const Dashboard: React.FC<Props> = ({ children }) => {
       <div className="bg-transparent pt-4 pb-1 px-4 flex items-center w-full h-[8dvh]">
         <div className="h-full w-auto mr-auto flex items-center">
           <img
-            src={theme === "dark" ? light : light}
+            src={theme === "dark" ? dark : light}
             className="h-full object-cover w-auto aspect-auto"
             alt="logo"
           />
@@ -39,10 +40,7 @@ const Dashboard: React.FC<Props> = ({ children }) => {
           {children}
         </div>
       </div>
-      <div className=" w-full bg-primary px-4 flex items-center bottom-0 h-4">
-        here
-      </div>
-
+ 
       <ToastContainer />
     </div>
   );
